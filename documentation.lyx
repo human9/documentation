@@ -619,6 +619,8 @@ Quantification
 \begin_layout Standard
 InsituNet provides the proportional abundance, raw counts, Z-scores and
  p values of any tests performed in the Cytoscape node and edge tables.
+ These tables are not necesarrily always visible, make sure they are toggled
+ on under the view menu.
 \end_layout
 
 \begin_layout Section
@@ -856,7 +858,22 @@ Remove selected from sync
 \end_layout
 
 \begin_layout Section
-Tutorials
+Tutorial
+\end_layout
+
+\begin_layout Standard
+In this tutorial we will walk through every step of creating and managing
+ networks within InsituNet.
+ We will be using data from Ke 
+\shape italic
+et al
+\shape default
+.
+ 2013, an 
+\shape italic
+in situ
+\shape default
+ sequencing dataset of HER2-positive breast cancer tissue.
 \end_layout
 
 \begin_layout Subsection
