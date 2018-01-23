@@ -271,6 +271,17 @@ Install
  importing a dataset from Apps -> Import InsituNet data.
 \end_layout
 
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/import menu.png
+	width 70line%
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Import and input format
 \end_layout
@@ -540,6 +551,8 @@ Each time a network is generated, InsituNet does several things.
  For example, if one transcript type is highly abundant and co-expresses
  with almost everything, the relationship may not be truly significant and
  will be pruned from the filtered network.
+ There are options for filtering for relationships that occur both more
+ and less often than expected.
  The network created will be saved within the network list panel, and can
  be swapped to at any time.
 \end_layout
@@ -580,9 +593,9 @@ n, you will likely want the distance to be longer than the width of the
 \end_layout
 
 \begin_layout Standard
-It is also important to note that increasing the distance will almost certainly
- increase the time InsituNet takes to identify which transcripts are co-expresse
-d.
+It is also important to note that increasing the distance will increase
+ the time InsituNet takes to identify which transcripts are co-expressed,
+ and will likely increase the number of co-expression relationships found.
  It is advisable to start with a lower distance and then only increase it
  if needed.
 \end_layout
@@ -600,15 +613,12 @@ InsituNet provides means to assess significance of co-expressions and filter
 \end_layout
 
 \begin_layout Standard
-The simplest filtering option is no filtering.
- This will create a network in which an edge is drawn between transcripts
- that exhibit any co-expression at all.
- No assessment of significance is made.
- The other options are the shuffle and hypergeometric methods, are both
- statistical methods for pruning edges in order to display only those interactio
-ns that are significant given the context.
- In situ sequencing provides extremely dense data on the detection of 1
- million or more transcripts in a given tissue section.
+
+\shape italic
+In situ
+\shape default
+ sequencing provides extremely dense data on the detection of 1 million
+ or more transcripts in a given tissue section.
  In such dense data, we would expect to observe a large number of co-expressions
  simply by chance, particularly for highly abundant transcripts.
  InsituNet aims to identify co-expressions between two transcripts that
@@ -622,15 +632,93 @@ ts in the data.
  those associated with pathology).
 \end_layout
 
-\begin_layout Subsection
-Quantification
+\begin_layout Standard
+Control of edge filtering is available under the 
+\begin_inset Quotes eld
+\end_inset
+
+Significance filtering subpanel:
 \end_layout
 
 \begin_layout Standard
-InsituNet provides the proportional abundance, raw counts, Z-scores and
- p values of any tests performed in the Cytoscape node and edge tables.
- These tables are not necesarrily always visible, make sure they are toggled
- on under the view menu.
+\align center
+\begin_inset Graphics
+	filename screenshots/sig.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The first multi-option box defines which test will be used for significance
+ assessment.
+ This is either Label shuffle, Hypergeometric test, or no filtering.
+\end_layout
+
+\begin_layout Standard
+The simplest filtering option is no filtering.
+ This will create a network in which an edge is drawn between transcripts
+ that exhibit any co-expression at all.
+ No assessment of significance is made.
+ The label shuffle and hypergeometric are both make a statistical guess
+ at how significant each co-expression pair is.
+ The label shuffle method performs this by generating a distribution of
+ values by simulating the permutation of every transcript's type in place,
+ then re-assessing which co-expressions occur.
+ Significance is then determined by comparing the actual values to this
+ distribution.
+ The hypergeometric method is essentially the same process, except a hypergeomet
+ric distribution is automatically created rather than performing the label
+ permutation.
+ The default is to use to label permutation method.
+\end_layout
+
+\begin_layout Standard
+The next multi-option box allows you to select whether you wish to look
+ at co-expression ocurring more than expected, less than expected, or both
+ of these.
+\end_layout
+
+\begin_layout Standard
+You can also adjust the p-value cutoff.
+ Edges found to be less significant than the provided value will be pruned
+ from the final network.
+ The Z-score is used as a basis for how thick the edge widths appear.
+ The maximum edge thickness can be set to a certain Z-score, by default
+ 20.
+ These Z-scores and other information such as the raw transcipt counts can
+ be found in the Cytoscape node and edge tables, which is usually found
+ at the bottom of window.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/table panel.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the Table Panel is not visible, you can enable it from 
+\begin_inset Quotes eld
+\end_inset
+
+View -> Show Table Panel
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The node tables contain counts and proportional abundance for the transcript
+ they represent (which is used to determine node size).
+ The edge tables contain information specific to the co-expression the edge
+ represents, such as Z-score and p-value.
 \end_layout
 
 \begin_layout Section
@@ -686,6 +774,15 @@ The view can be panned by left-clicking and dragging, and zoomed at the
 
 .
  The window can later be re-pinned, or simply left free.
+ If you wish to re-center and re-fit the zoom level, simply press the centering
+ button: 
+\begin_inset Graphics
+	filename screenshots/center.png
+	scale 70
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -868,12 +965,12 @@ Remove selected from sync
 \end_layout
 
 \begin_layout Section
-Tutorial
+Tutorials
 \end_layout
 
 \begin_layout Standard
-In this tutorial we will walk through every step of creating and managing
- networks within InsituNet.
+In these tutorials we will walk through creating and managing networks within
+ InsituNet.
  We will be using data from Ke 
 \shape italic
 et al
@@ -1218,7 +1315,7 @@ Switch to the sync list and select the networks to switch between them.
 Your networks are now synchronized.
  In later versions of Cytoscape (3.4+) you can open these networks side-by-side
  and compare them all simultaneously.
- To do this, press the grid button, and then select all the networks you
+ To do this, press the grid button: , and then select all the networks you
  wish to view
 \end_layout
 
