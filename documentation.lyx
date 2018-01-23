@@ -196,6 +196,13 @@ Cytoscape, version 3.2+
 
 \begin_layout Subsection
 Installation
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Installation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -874,18 +881,194 @@ et al
 in situ
 \shape default
  sequencing dataset of HER2-positive breast cancer tissue.
+ 
 \end_layout
 
 \begin_layout Subsection
 Creating a network
 \end_layout
 
+\begin_layout Enumerate
+Download the dataset, available from 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://bitbucket.org/insitunet/insitunet/raw/master/datasets/slideA_ke_et_al.csv
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Launch Cytoscape and import this dataset into InsituNet.
+ If you have not yet set up Cytoscape and InsituNet, please see section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Installation"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+After the dataset loads, press the 
+\begin_inset Quotes eld
+\end_inset
+
+Generate network(s)
+\begin_inset Quotes erd
+\end_inset
+
+ button and wait for the task to complete: 
+\begin_inset Graphics
+	filename screenshots/generate_net.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+A network is created from the entire dataset using default setttings.
+ The view should now appear similar to below.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/with network.png
+	width 90line%
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Editing colours and symbols
 \end_layout
 
+\begin_layout Standard
+You can adjust the colours of transcripts in both the tissue and network
+ views by using the Style control button, found above the tissue view: 
+\begin_inset Graphics
+	filename screenshots/style.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Left click on a transcript in the tissue view you wish to alter.
+\end_layout
+
+\begin_layout Enumerate
+Press the Style control button: 
+\begin_inset Graphics
+	filename screenshots/style.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The Style Control dialog launches.
+ You may now alter the colour and symbol of your transcript.
+\end_layout
+
+\begin_layout Enumerate
+Use the sliders at the bottom to alter both this transcript size, and sizes
+ of all transcripts (Master Symbol Scale).
+\end_layout
+
+\begin_layout Enumerate
+Use the selection box at the top of the dialog to quickly change between
+ transcripts.
+\end_layout
+
+\begin_layout Standard
+Notice that the corresponding node colours also change when you adjust the
+ transcript colour.
+\end_layout
+
 \begin_layout Subsection
 Exporting an image
+\end_layout
+
+\begin_layout Standard
+You can export an image from both the tissue and network views quite easily.
+ To export from the tissue view:
+\end_layout
+
+\begin_layout Enumerate
+Press the export button above the tissue view: 
+\begin_inset Graphics
+	filename screenshots/export.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Select 
+\begin_inset Quotes eld
+\end_inset
+
+Export current view as png...
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Browse to where you wish to save the image.
+\end_layout
+
+\begin_layout Standard
+You can also choose to export with a resolution higher than the current
+ view resolution.
+ In this case, the center of the image will stay as the center of the window,
+ but the height and width will be as you specify.
+ This can be useful as it allows exporting an image larger than the screen
+ size:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/reconstruction.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You can also export the network view using inbuilt Cytoscape functionality
+ using 
+\begin_inset Quotes eld
+\end_inset
+
+File -> Export as Image...
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -896,8 +1079,29 @@ Synchronizing multiple networks
 Switching between datasets
 \end_layout
 
+\begin_layout Standard
+All networks you generate will be listed within the Network list subpanel.
+ However, when you import a new dataset, you will have to switch the datasets
+ to access the Network list for that dataset, as it is local (in contrast
+ to the global sync list).
+\end_layout
+
+\begin_layout Enumerate
+Click the selection box at the top of the InsituNet panel where the filename
+ is displayed.
+\end_layout
+
+\begin_layout Enumerate
+Select the dataset you wish to switch to.
+\end_layout
+
 \begin_layout Subsection
 Using the sliding window
+\end_layout
+
+\begin_layout Standard
+The sliding window allows you to automatically generate multiple networks
+ across your dataset.
 \end_layout
 
 \end_body
