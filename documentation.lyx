@@ -682,7 +682,7 @@ The next multi-option box allows you to select whether you wish to look
 \end_layout
 
 \begin_layout Standard
-You can also adjust the p-value cutoff.
+You can also adjust the P value cutoff.
  Edges found to be less significant than the provided value will be pruned
  from the final network.
  The Z-score is used as a basis for how thick the edge widths appear.
@@ -718,7 +718,7 @@ View -> Show Table Panel
  The node tables contain counts and proportional abundance for the transcript
  they represent (which is used to determine node size).
  The edge tables contain information specific to the co-expression the edge
- represents, such as Z-score and p-value.
+ represents, such as Z-score and P value.
 \end_layout
 
 \begin_layout Section
@@ -756,12 +756,28 @@ The tissue view window will initially show all all transcripts.
 \begin_layout Standard
 The view can be panned by left-clicking and dragging, and zoomed at the
  cursor location by moving the scroll wheel.
+ The current zoom level is displayed to the bottom right of the window,
+ and below that the current coordinates of the mouse.
  It is also possible to rotate the view by clicking + dragging using the
  third button (or scroll wheel button).
+ The current orientation will be updated in the compass to the top right
+ of the view.
  The legend found to the left of the view can also be scrolled up and down
  (if it exceeds the height of the window) by mousing to the far left of
  the view and using the scroll wheel.
- Often, the tissue view may be too small to provide an adequate visualization,
+ The legend, compass, scale bar, and all other HUD components may be hidden
+ using the info button: 
+\begin_inset Graphics
+	filename screenshots/info.png
+	scale 70
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Often, the tissue view may be too small to provide an adequate visualization,
  in which case the view can easily be popped out into its own separate window
  which can then be expanded at will.
  To pop out the window, select the unpin button found at the bottom-left
@@ -774,6 +790,22 @@ The view can be panned by left-clicking and dragging, and zoomed at the
 
 .
  The window can later be re-pinned, or simply left free.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/tissue window.png
+	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The tissue view toolbar controls will follow the popped-out window.
  If you wish to re-center and re-fit the zoom level, simply press the centering
  button: 
 \begin_inset Graphics
@@ -783,6 +815,23 @@ The view can be panned by left-clicking and dragging, and zoomed at the
 \end_inset
 
 .
+ This will adjust the settings to best fit the current window size.
+\end_layout
+
+\begin_layout Standard
+While exploring the tissue view, you may also wish to load imagery to back
+ the transcript symbols.
+ To load an image, select the image load button: 
+\begin_inset Graphics
+	filename screenshots/image.png
+	scale 70
+
+\end_inset
+
+.
+ You can then browse to and load an image.
+ Most common formats are supported, including JPG, PNG and TIFF.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -834,6 +883,7 @@ If desired, the sliding window can be used to automatically generate networks
  This option can be enabled from the region control subpanel.
  Just select the dimensions of the grid (the default is a 2x2 grid, which
  will create 4 individual networks).
+ Networks will be generated in order from left to right, top to bottom.
  If the selected grid is 1x1, there will be no difference between this and
  using the entire dataset.
 \end_layout
@@ -861,6 +911,31 @@ Network list
  from on the tissue view.
  You can also use the arrow keys to quickly switch between networks in this
  list.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/net list filled.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the 
+\begin_inset Quotes eld
+\end_inset
+
+Overwrite selected network
+\begin_inset Quotes erd
+\end_inset
+
+ button is checked, then intead of creating a new network, the currently
+ selected one will be overwritten.
+ This can be useful for testing purposes, to prevent the list becoming cluttered.
 \end_layout
 
 \begin_layout Subsection
@@ -906,10 +981,7 @@ InsituNet's synchronization allows easier comparisons between different
  This is accomplished by creating an unseen union network of all synced
  networks, applying whatever layout is selected to the union, and then applying
  the position of nodes in that network to all of the synced networks.
-\end_layout
-
-\begin_layout Standard
-To get networks into the sync panel, highlight them in the network panel
+ To get networks into the sync list, highlight them in the network panel
  then select 
 \begin_inset Quotes eld
 \end_inset
@@ -919,18 +991,6 @@ Add selected to sync-list
 \end_inset
 
 .
- Synchronization occurs between any networks that are placed into the sync
- list.
- These networks need not be from the same dataset, either.
- The synchronization list is 
-\shape italic
-global
-\shape default
-, switching between datasets will not alter it.
- The synchronization is also continuous, so the layouts will stay in sync
- even if components are moved manually.
- Selecting different networks from the list will switch the view to them,
- as with the normal network list.
  
 \end_layout
 
@@ -943,6 +1003,22 @@ global
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Synchronization occurs between any networks that are placed into the sync
+ list.
+ These networks need not be from the same dataset, either.
+ The synchronization list is 
+\shape italic
+global
+\shape default
+, switching between datasets will not alter it.
+ The synchronization is also continuous, so the layouts will stay in sync
+ even if components are moved manually.
+ Selecting different networks from the list will switch the view to them,
+ as with the normal network list.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1017,7 +1093,23 @@ reference "subsec:Installation"
 \end_layout
 
 \begin_layout Enumerate
-After the dataset loads, press the 
+Import the dataset from Apps -> Import InsituNet data.
+\end_layout
+
+\begin_layout Enumerate
+After the dataset loads, expand the 
+\begin_inset Quotes eld
+\end_inset
+
+Distance control
+\begin_inset Quotes erd
+\end_inset
+
+ subpanel and set distance to 40px.
+\end_layout
+
+\begin_layout Enumerate
+Press the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1043,7 +1135,7 @@ A network is created from the entire dataset using default setttings.
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename screenshots/with network.png
+	filename screenshots/net2.png
 	width 90line%
 
 \end_inset
@@ -1084,7 +1176,11 @@ Press the Style control button:
 
 \begin_layout Enumerate
 The Style Control dialog launches.
- You may now alter the colour and symbol of your transcript.
+ You may now alter the 
+\lang australian
+colour
+\lang english
+ and symbol of your transcript.
 \end_layout
 
 \begin_layout Enumerate
@@ -1315,8 +1411,96 @@ Switch to the sync list and select the networks to switch between them.
 Your networks are now synchronized.
  In later versions of Cytoscape (3.4+) you can open these networks side-by-side
  and compare them all simultaneously.
- To do this, press the grid button: , and then select all the networks you
- wish to view
+ To do this, press the grid button: 
+\begin_inset Graphics
+	filename screenshots/grid button.png
+	scale 70
+
+\end_inset
+
+, select all the networks you wish to view at once, then press the view
+ button: 
+\begin_inset Graphics
+	filename screenshots/view button.png
+	scale 70
+
+\end_inset
+
+.
+ You will then be able to view multiple synced networks at once, and see
+ the changes update live when you move nodes or pan and zoom.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/multiple sync and edge table.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Troubleshooting
+\end_layout
+
+\begin_layout Subsection*
+How large can imported images be?
+\end_layout
+
+\begin_layout Standard
+The actual maximum size will vary depending on your graphics hardware.
+ But in general it's better to use a lower resolution image and then scale
+ up within the program.
+ 
+\end_layout
+
+\begin_layout Subsection*
+It's taking ages to start up...
+\end_layout
+
+\begin_layout Standard
+Some virus scanners can interfere with the way JOGL (which provides OpenGL
+ acceleration) loads libraries at runtime.
+ They scan everything as it loads which makes it take a long time.
+ It should eventually load, however.
+ 
+\end_layout
+
+\begin_layout Subsection*
+The tissue view is very slow
+\end_layout
+
+\begin_layout Standard
+How fast this is depends on your graphics card.
+ Idealy, use a more powerful card.
+ There are some things that will probably increase rendering speed though,
+ such as disabling anti-aliasing (see below) or reducing the size of points
+ (try moving the master point scale to minimum).
+ 
+\end_layout
+
+\begin_layout Subsection*
+How do I disable anti-aliasing?
+\end_layout
+
+\begin_layout Standard
+By default, 2X MSAA is enabled in the tissue view, which makes transcript
+ symbols appear less jagged but can slow performance.
+ To disable, simply change the property insituNet.useAntiAliasing from "true"
+ to 
+\begin_inset Quotes eld
+\end_inset
+
+false
+\begin_inset Quotes erd
+\end_inset
+
+ (edit > preferences > properties).
+ This will apply to any new dataset you open, and also affects the exported
+ image.
 \end_layout
 
 \end_body
