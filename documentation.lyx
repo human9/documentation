@@ -6,6 +6,9 @@
 \origin unavailable
 \textclass article
 \use_default_options true
+\begin_modules
+enumitem
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -1051,7 +1054,7 @@ You can also choose to export with a resolution higher than the current
 \align center
 \begin_inset Graphics
 	filename screenshots/reconstruction.png
-	width 100line%
+	width 70line%
 
 \end_inset
 
@@ -1069,10 +1072,6 @@ File -> Export as Image...
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Subsection
-Synchronizing multiple networks
 \end_layout
 
 \begin_layout Subsection
@@ -1097,11 +1096,130 @@ Select the dataset you wish to switch to.
 
 \begin_layout Subsection
 Using the sliding window
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Using-the-sliding"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 The sliding window allows you to automatically generate multiple networks
  across your dataset.
+\end_layout
+
+\begin_layout Enumerate
+Open the 
+\begin_inset Quotes eld
+\end_inset
+
+Region selection
+\begin_inset Quotes erd
+\end_inset
+
+ subpanel, and check the 
+\begin_inset Quotes eld
+\end_inset
+
+Use auto-sliding window
+\begin_inset Quotes erd
+\end_inset
+
+ option:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename screenshots/slider.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate-Resume
+By default, a 2x2 window is selected.
+ Adjust this as desired, and optionally specify the overlap percentage (how
+ much the windows will overlap).
+\end_layout
+
+\begin_layout Enumerate-Resume
+If you wish to use the full dataset as background, check this option.
+ This makes significance checks use the abundance from the entire dataset,
+ rather than the selection alone.
+\end_layout
+
+\begin_layout Enumerate-Resume
+Press 
+\begin_inset Quotes eld
+\end_inset
+
+Generate network(s)
+\begin_inset Quotes erd
+\end_inset
+
+ to run the autoslider!
+\end_layout
+
+\begin_layout Enumerate-Resume
+View the different windows from the Network list.
+\end_layout
+
+\begin_layout Subsection
+Synchronizing multiple networks
+\end_layout
+
+\begin_layout Standard
+Comparing multiple networks is complex, but InsituNet allows you to synchronize
+ their layouts (and keep them in sync) to make this task easier.
+\end_layout
+
+\begin_layout Enumerate
+Generate some networks you wish to synchronize.
+ You can easily create many networks by following section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Using-the-sliding"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Select all of these networks from the Network list subpanel.
+ You can select multiple networks at the same time by using shift + left
+ click.
+\end_layout
+
+\begin_layout Enumerate
+Press the 
+\begin_inset Quotes eld
+\end_inset
+
+Add selected to sync-list
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+ The networks will remain in the network list, but can now also be found
+ in the Sync list.
+\end_layout
+
+\begin_layout Enumerate
+Switch to the sync list and select the networks to switch between them.
+\end_layout
+
+\begin_layout Standard
+Your networks are now synchronized.
+ In later versions of Cytoscape (3.4+) you can open these networks side-by-side
+ and compare them all simultaneously.
+ To do this, press the grid button, and then select all the networks you
+ wish to view
 \end_layout
 
 \end_body
