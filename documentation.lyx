@@ -801,6 +801,7 @@ The view can be panned by left-clicking and dragging, and zoomed at the
  The legend found to the left of the view can also be scrolled up and down
  (if it exceeds the height of the window) by mousing to the far left of
  the view and using the scroll wheel.
+ You may also left-click individual transcripts to view their name.
  The legend, compass, scale bar, and all other informational components
  may be hidden using the info button: 
 \begin_inset Graphics
@@ -825,7 +826,8 @@ Often, the tissue view may be too small to provide an adequate visualization,
 \end_inset
 
 .
- The window can later be re-pinned, or simply left free.
+ The window can later be re-pinned by closing the window or selecting the
+ same button (which now appears as a pin).
  
 \end_layout
 
