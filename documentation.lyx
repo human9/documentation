@@ -29,6 +29,7 @@ enumitem
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement !tph
 \paperfontsize default
 \spacing single
 \use_hyperref true
@@ -87,6 +88,11 @@ enumitem
 InsituNet User Documentation
 \end_layout
 
+\begin_layout Author
+John Salamon, Xiaoyan Qian, Mats Nilsson, David J.
+ Lynn
+\end_layout
+
 \begin_layout Abstract
 In situ sequencing is a novel method to generate spatially-resolved, in
  situ RNA localization and expression data, at an almost single-cell resolution.
@@ -138,9 +144,14 @@ n via synchronized layouts into a single Cytoscape app, with a focus on
 
 \begin_layout Standard
 InsituNet's networks represent spatial co-expressions between transcript
- pairs within sections of tissue.
- Each node is a particular transcript type, and its size is proportional
- to the abundance of this particular transcript within the tissue.
+ pairs in an 
+\shape italic
+in situ
+\shape default
+ sequencing dataset.
+ Each node represents a specific transcript, and its size is proportional
+ to the abundance of this particular transcript within the tissue section
+ or region selected.
  Edges by default represent significant spatial co-expression between the
  two transcripts they link.
 \end_layout
@@ -148,8 +159,13 @@ InsituNet's networks represent spatial co-expressions between transcript
 \begin_layout Standard
 Any form of spatially-resolved data in the form of x and y coordinates can
  be imported for use within InsituNet.
- Users may select different 2D regions within the dataset to use to generate
- networks, and then compare the results by synchronizing layouts.
+ Users may select different 2D regions within the dataset to generate networks,
+ and then compare the results in different regions by synchronizing layouts.
+\end_layout
+
+\begin_layout Standard
+The screenshots that appear in this documentation were all taken on macOS
+ 10.12.6, appearance on different platforms is likely to vary slightly.
 \end_layout
 
 \begin_layout Section
@@ -182,10 +198,7 @@ Graphics card with OpenGL 3.3 support
 status open
 
 \begin_layout Plain Layout
-There may be rendering issues on certain OpenGL implementations, notably
- on MacOS.
- If restarting Cytoscape does not resolve these issues, please try a different
- device or OS.
+If you encounter rendering issues, please try doing a graphics driver update.
 \end_layout
 
 \end_inset
@@ -233,15 +246,65 @@ http://cytoscape.org
 \end_inset
 
 .
- Once Cytoscape is running you can install InsituNet from within the Cytoscape
- app store, accessible from the top menubar (Apps -> App Manager...).
+ Once complete you may download and install InsituNet manually, or automatically
+ from the Cytoscape app store.
+ For any issues encountered while using Cytoscape not documented here, please
+ consult the Cytoscape manual, available at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.cytoscape.org/manual/Cytoscape3_6_0Manual.pdf
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+App store installation
+\end_layout
+
+\begin_layout Standard
+Once Cytoscape is running you can install InsituNet from within the Cytoscape
+ app store, accessible from the top menubar (Apps → App Manager...).
 \end_layout
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/app store selection.png
 	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Navigation to InsituNet within the Cytoscape App Manager.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -267,15 +330,49 @@ Install
 \end_inset
 
  button.
- After download and installation completes, InsituNet can be started by
- importing a dataset from Apps -> Import InsituNet data.
+ If your computer is behind a proxy you may need to configure Cytoscape
+ proxy settings to access the App store via Edit → Preferences → Proxy settings.
+ 
 \end_layout
 
 \begin_layout Standard
+After download and installation completes, InsituNet can be started by importing
+ a dataset from Apps → Import InsituNet data.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename screenshots/import menu.png
 	width 70line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Launching InsituNet from the Apps menu.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -438,16 +535,39 @@ ACTB,
 \end_layout
 
 \begin_layout Standard
-The order of columns and exact name of headers is not important as you will
- be prompted to check the columns are correct on import.
- The order of rows is also irrelevant, so long as the header comes first.
+The order of the columns and the exact name of column headers is not important
+ as you will be prompted to check the columns are correct on import.
+ The order of the rows is also irrelevant, so long as the header comes first.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename screenshots/importer screen.png
 	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The import dialog appears when a dataset is being imported from a csv file.
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -497,8 +617,15 @@ InsituNet
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename screenshots/startup.png
+	filename screenshots/infoshot_labeled.png
 	width 100line%
 
 \end_inset
@@ -506,8 +633,47 @@ InsituNet
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Main-components-of"
+
+\end_inset
+
+Main components of the InsituNet interface.
+ A) Dataset selection box.
+ B) The expandable control panel submenus.
+ C) The tissue view, shows a reconstruction of the original dataset.
+ D) The network view, where new networks will appear.
+ E) The table panel, contains the data used to construct the network.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-Below the collapsed sub-menus is the 
+Below the collapsed sub-menus (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Main-components-of"
+
+\end_inset
+
+, B) is the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -518,7 +684,15 @@ Generate network(s)
  button.
  Pressing the button at this point will result in a network being generated
  using the default settings from the entire dataset.
- This network will appear to the right of the panel.
+ This network will appear in the network view to the right of the panel
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Main-components-of"
+
+\end_inset
+
+, D).
  Below the 
 \begin_inset Quotes eld
 \end_inset
@@ -527,8 +701,15 @@ Generate network(s)
 \begin_inset Quotes erd
 \end_inset
 
- button is the tissue view window, which shows a reconstruction of the original
- dataset, in which each transcript type is assigned a colour and symbol.
+ button is the tissue view (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Main-components-of"
+
+\end_inset
+
+, C), which shows a reconstruction of the original dataset, in which each
+ transcript type is assigned a colour and symbol.
 \end_layout
 
 \begin_layout Section
@@ -542,19 +723,38 @@ Overview
 \begin_layout Standard
 Each time a network is generated, InsituNet does several things.
  Firstly, it conducts a search around each transcript to find if they have
- any neighbours close enough to be co-expressed.
- Next, a network is created in which every transcript is assigned a node.
- The node size is made proportional to the abundance of that transcript.
- Co-expressed transcripts are linked with an edge.
+ any neighbours close enough to be considered as spatially co-expressed.
+ Next, a network is created in which every unique transcript is represented
+ as a node in the network.
+ The node size is proportional to the abundance of that transcript, in relation
+ to the total abundance of all transcripts within the selected 2D area.
+ Details on the proportion can be found in the node table panel (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Main-components-of"
+
+\end_inset
+
+, E).
+ Co-expressed transcripts are linked with an edge (see below for further
+ details).
  Lastly, filtering is optionally applied to remove edges which are not assessed
- to be significant, given the abundance of the transcripts.
- For example, if one transcript type is highly abundant and co-expresses
- with almost everything, the relationship may not be truly significant and
- will be pruned from the filtered network.
+ to be statistically significant, given the abundance of the transcripts.
+ For example, if one transcript type is highly abundant and is co-expressed
+ with almost everything, the relationship may not be of interest and can
+ be pruned from the filtered network.
  There are options for filtering for relationships that occur both more
- and less often than expected.
- The network created will be saved within the network list panel, and can
- be swapped to at any time.
+ and less often than statistically expected.
+ The network created will be saved within the network list subpanel (within
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Main-components-of"
+
+\end_inset
+
+, B).
 \end_layout
 
 \begin_layout Subsection
@@ -562,13 +762,20 @@ Co-expression distance
 \end_layout
 
 \begin_layout Standard
-The most important variable to define before generating networks is the
- co-expression distance.
+The most important variable that a user needs to define before generating
+ networks is the spatial co-expression distance.
  It may be adjusted from the distance control sub-panel, as seen below.
  
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename screenshots/distance.png
@@ -579,17 +786,49 @@ The most important variable to define before generating networks is the
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-distance-control"
+
+\end_inset
+
+The distance control subpanel expanded.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-The value is given in pixels, which correspond exactly to whatever units
- are used in the input file.
- This distance is used to determine whether any two transcripts are close
- enough to be co-expressed.
- Increasing or decreasing it will cause more or fewer transcripts to appear
- co-expressed.
+The search distance value is given in the same units as the input file.
+ An estimation of this value in µm is displayed below the search distance.
+ This estimation is calculated from the tissue dimensions provided below
+ it.
+ The search distance is used to determine whether any two transcripts are
+ close enough to be considered by InsituNet as spatially co-expressed.
+ Increasing or decreasing the search distance will result in more or fewer
+ transcripts being identified as spatially co-expressed.
  Determining what the optimal distance is will depend on what your intentions
- are, for example if you are interested in looking at intercellular co-expressio
-n, you will likely want the distance to be longer than the width of the
- cells your data has come from.
+ are.
+ If you are interested in looking at intracellular co-expression, you will
+ likely want the distance to be smaller than the average diameter of the
+ cells your data has been generated with.
+ For example, human squamous epithelial cells are typically 40-60µm in diameter,
+ so it would be advisable to set the search distance somewhat below 40µm.
 \end_layout
 
 \begin_layout Standard
@@ -605,11 +844,13 @@ Edge filtering
 \end_layout
 
 \begin_layout Standard
-InsituNet provides means to assess significance of co-expressions and filter
- the network accordingly.
- This is to prevent the network becoming excessively dense.
+InsituNet provides several methods to assess the statistical significance
+ of spatial co-expressions and to filter the network accordingly.
+ This is to prevent the network becoming excessively dense and to focus
+ the analysis on the most significant spatial co-expression relationships.
  The aim is to test whether, given the abundance of a given pair of transcripts,
- the amount of co-expression they exhibit is surprisingly high (or low).
+ the amount of spatial co-expression they exhibit is surprisingly high (or
+ low).
 \end_layout
 
 \begin_layout Standard
@@ -617,18 +858,19 @@ InsituNet provides means to assess significance of co-expressions and filter
 \shape italic
 In situ
 \shape default
- sequencing provides extremely dense data on the detection of 1 million
+ sequencing can provide extremely dense data on the detection of 1 million
  or more transcripts in a given tissue section.
- In such dense data, we would expect to observe a large number of co-expressions
- simply by chance, particularly for highly abundant transcripts.
- InsituNet aims to identify co-expressions between two transcripts that
- occur statistically more than expected given the abundance of the two transcrip
-ts in the data.
+ In such dense data, we would expect to observe a large number of spatial
+ co-expressions simply by chance, particularly for highly abundant transcripts.
+ InsituNet aims to identify spatial co-expressions between two transcripts
+ that occur statistically more than expected given the abundance of the
+ two transcripts in the data.
  These statistically significant interactions are more likely to represent
- true functional co-expressions.
+ true spatial co-expressions.
  InsituNet can also identify transcripts that are co-expressed much less
- than expected given their abundance, as these transcripts may represent
- specific biomarkers of particular cell-types or tissue regions (e.g.
+ than expected given their abundance.
+ These transcripts may represent specific biomarkers of particular cell-types
+ or tissue regions (e.g.
  those associated with pathology).
 \end_layout
 
@@ -642,6 +884,13 @@ Significance filtering subpanel:
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/sig.png
 	scale 70
@@ -651,24 +900,46 @@ Significance filtering subpanel:
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The significance filtering subpanel, used to control pruning of edges not
+ found to be statistically significant.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-The first multi-option box defines which test will be used for significance
- assessment.
+The first multi-option box defines which test will be used for the statistical
+ analysis.
  This is either Label shuffle, Hypergeometric test, or no filtering.
 \end_layout
 
 \begin_layout Standard
 The simplest filtering option is no filtering.
  This will create a network in which an edge is drawn between transcripts
- that exhibit any co-expression at all.
+ that exhibit any spatial co-expression at all.
  No assessment of significance is made.
- The label shuffle and hypergeometric are both make a statistical guess
- at how significant each co-expression pair is.
+ The label shuffle and hypergeometric methods are both options to assess
+ how statistically surprising each co-expression pair is.
  The label shuffle method performs this by generating a distribution of
  values by simulating the permutation of every transcript's type in place,
  then re-assessing which co-expressions occur.
- Significance is then determined by comparing the actual values to this
- distribution.
+ Significance is then determined by comparing the observed values in the
+ real data to this distribution.
  The hypergeometric method is essentially the same process, except a hypergeomet
 ric distribution is automatically created rather than performing the label
  permutation.
@@ -677,15 +948,16 @@ ric distribution is automatically created rather than performing the label
 
 \begin_layout Standard
 The next multi-option box allows you to select whether you wish to look
- at co-expression ocurring more than expected, less than expected, or both
- of these.
+ at spatial co-expression occurring more than expected, less than expected,
+ or both.
 \end_layout
 
 \begin_layout Standard
-You can also adjust the P value cutoff.
- Edges found to be less significant than the provided value will be pruned
- from the final network.
- The Z-score is used as a basis for how thick the edge widths appear.
+You can also adjust the P value threshold.
+ Edges found to be less than the provided value will be pruned from the
+ final network.
+ The Z-score is used to control the maximum edge width in the network view
+ so that the highly significant edges do not overwhelm the network visualization.
  The maximum edge thickness can be set to a certain Z-score, by default
  20.
  These Z-scores and other information such as the raw transcipt counts can
@@ -696,9 +968,38 @@ You can also adjust the P value cutoff.
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/table panel.png
 	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Cytoscape Table Panel, the node and edge tables in which contain information
+ about InsituNet's networks.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -710,15 +1011,15 @@ If the Table Panel is not visible, you can enable it from
 \begin_inset Quotes eld
 \end_inset
 
-View -> Show Table Panel
+View → Show Table Panel
 \begin_inset Quotes erd
 \end_inset
 
 .
- The node tables contain counts and proportional abundance for the transcript
- they represent (which is used to determine node size).
- The edge tables contain information specific to the co-expression the edge
- represents, such as Z-score and P value.
+ The node tables contain counts and proportional abundance for each unique
+ type of transcript in the network (which is used to determine node size).
+ The edge tables contain information pertaining to the spatial co-expression
+ relationship that the edge represents, such as the Z-score and P value.
 \end_layout
 
 \begin_layout Section
@@ -728,9 +1029,9 @@ Selecting 2D regions
 \begin_layout Standard
 InsituNet network generation by default will use the entire imported dataset,
  however it also features support for network generation from any 2D subregion.
- Using the tissue view window found at the bottom of the control panel,
- users may zoom and pan the dataset as well as manually define 2D regions
- using the mouse.
+ Using the tissue view found at the bottom of the control panel, users may
+ zoom and pan the dataset as well as manually define 2D regions using the
+ mouse.
 \end_layout
 
 \begin_layout Subsection
@@ -739,9 +1040,9 @@ Exploring the tissue
 
 \begin_layout Standard
 The tissue view window will initially show all all transcripts.
- Once some component(s) in the network are selected, the view will be filtered
- to show only the transcripts corresponding to those particular nodes and
- edges.
+ Once some component(s) in the network are selected, the network visualization
+ will be filtered to show only the transcripts corresponding to those particular
+ nodes and edges.
  All transcripts can be shown again by selecting the show all button (eye
  icon):
 \begin_inset Graphics
@@ -765,8 +1066,8 @@ The view can be panned by left-clicking and dragging, and zoomed at the
  The legend found to the left of the view can also be scrolled up and down
  (if it exceeds the height of the window) by mousing to the far left of
  the view and using the scroll wheel.
- The legend, compass, scale bar, and all other HUD components may be hidden
- using the info button: 
+ The legend, compass, scale bar, and all other informational components
+ may be hidden using the info button: 
 \begin_inset Graphics
 	filename screenshots/info.png
 	scale 70
@@ -795,9 +1096,39 @@ Often, the tissue view may be too small to provide an adequate visualization,
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/tissue window.png
 	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+InsituNet's tissue view.
+ This OpenGL accellerated window displays every transcript from the imported
+ dataset.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -819,8 +1150,9 @@ The tissue view toolbar controls will follow the popped-out window.
 \end_layout
 
 \begin_layout Standard
-While exploring the tissue view, you may also wish to load imagery to back
- the transcript symbols.
+While exploring the tissue view, you may also wish to load corresponding
+ histological imagery such as hematoxylin-and-eosin (H&E) stains to assist
+ with navigation of the tisse.
  To load an image, select the image load button: 
 \begin_inset Graphics
 	filename screenshots/image.png
@@ -829,7 +1161,7 @@ While exploring the tissue view, you may also wish to load imagery to back
 \end_inset
 
 .
- You can then browse to and load an image.
+ You can then browse to and load an image, and also optionally resize it.
  Most common formats are supported, including JPG, PNG and TIFF.
  
 \end_layout
@@ -839,8 +1171,8 @@ Manual selection
 \end_layout
 
 \begin_layout Standard
-There are two modes of manual selection, basic rectangular and freeform/polygon
- mode.
+There are two modes to manualy select a specific region of the tissue of
+ interest, basic rectangular and freeform/polygon mode.
  They can be toggled between by selecting their corresponding buttons from
  the tissue view toolbar: 
 \begin_inset Graphics
@@ -855,6 +1187,8 @@ There are two modes of manual selection, basic rectangular and freeform/polygon
 \begin_layout Standard
 You can select regions by using the right mouse button (or the left button
  while holding the control key).
+ To select right click and hold the right mouse button until the selection
+ is complete.
  Rectangular selection is simply a matter of click + drag.
  The freeform/polygon mode is freeform while held, but if simply clicked,
  a polygon point will be placed.
@@ -870,7 +1204,8 @@ Generate network(s)
 \end_inset
 
  button is pressed (and manual selection is enabled under the region selection
- subpanel) then the network will only be generated from the selected region.
+ subpanel) then the network will only be based on data in the selected region
+ of the tissue.
 \end_layout
 
 \begin_layout Subsection
@@ -878,14 +1213,22 @@ Sliding window selection
 \end_layout
 
 \begin_layout Standard
-If desired, the sliding window can be used to automatically generate networks
- from a grid of rectangular selections.
+If desired, a sliding window function can be used to automatically generate
+ networks from a grid of rectangular selections.
  This option can be enabled from the region control subpanel.
  Just select the dimensions of the grid (the default is a 2x2 grid, which
  will create 4 individual networks).
  Networks will be generated in order from left to right, top to bottom.
  If the selected grid is 1x1, there will be no difference between this and
  using the entire dataset.
+ On Cytoscape 3.4+, click the grid button: 
+\begin_inset Graphics
+	filename screenshots/grid button.png
+	scale 70
+
+\end_inset
+
+ to display all the networks generated.
 \end_layout
 
 \begin_layout Section
@@ -915,9 +1258,40 @@ Network list
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/net list filled.png
 	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Network list.
+ While Cytoscape also provides an overall network list tool, from the InsituNet
+ list you can see specifically the networks you have created for the current
+ dataset.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -947,7 +1321,7 @@ To import a new dataset, simply go to
 \begin_inset Quotes eld
 \end_inset
 
-Apps -> Import InsituNet
+Apps → Import InsituNet
 \begin_inset Quotes erd
 \end_inset
 
@@ -960,9 +1334,38 @@ Apps -> Import InsituNet
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/topbar.png
 	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The dataset switcher lets you switch between all the different datasets
+ you have imported.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -975,9 +1378,12 @@ Synchronizing layouts
 
 \begin_layout Standard
 InsituNet's synchronization allows easier comparisons between different
- networks.
- It keeps nodes of the same transcript in the same positions, so that when
- switching between them it becomes clearer which edges and nodes are altered.
+ networks (e.g.
+ networks representing different datasets or different regions from within
+ a single dataset).
+ This function synchronizes the position of nodes representing the same
+ transcripts in different visualizations, so that when switching between
+ them it becomes easier to see which edges and nodes are altered.
  This is accomplished by creating an unseen union network of all synced
  networks, applying whatever layout is selected to the union, and then applying
  the position of nodes in that network to all of the synced networks.
@@ -996,9 +1402,39 @@ Add selected to sync-list
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/sync.png
 	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The sync list.
+ The uppermost expandable menu on the InsituNet control panel, this lists
+ all networks that are currently layout-synchronized.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -1093,10 +1529,59 @@ reference "subsec:Installation"
 \end_layout
 
 \begin_layout Enumerate
-Import the dataset from Apps -> Import InsituNet data.
+Import the dataset from Apps → Import InsituNet data.
+ After completion, your view should look similar to Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-appearance-of"
+
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename screenshots/startup.png
+	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-appearance-of"
+
+\end_inset
+
+The appearance of Cytoscape immediately after importing a dataset.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate-Resume
 After the dataset loads, expand the 
 \begin_inset Quotes eld
 \end_inset
@@ -1105,10 +1590,18 @@ Distance control
 \begin_inset Quotes erd
 \end_inset
 
- subpanel and set distance to 40px.
+ subpanel and set distance to 40px, and the resolution to 844x646, as in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-distance-control"
+
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Enumerate-Resume
 Press the 
 \begin_inset Quotes eld
 \end_inset
@@ -1127,20 +1620,9 @@ Generate network(s)
 
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Enumerate-Resume
 A network is created from the entire dataset using default setttings.
- The view should now appear similar to below.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename screenshots/net2.png
-	width 90line%
-
-\end_inset
-
-
+ The view should now appear similar to Figure 
 \end_layout
 
 \begin_layout Subsection
@@ -1244,10 +1726,38 @@ You can also choose to export with a resolution higher than the current
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename screenshots/reconstruction.png
-	width 70line%
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An image exported from the tissue view at much greater resolution than the
+ actual window size.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -1260,7 +1770,7 @@ You can also export the network view using inbuilt Cytoscape functionality
 \begin_inset Quotes eld
 \end_inset
 
-File -> Export as Image...
+File → Export as Image...
 \begin_inset Quotes erd
 \end_inset
 
@@ -1325,9 +1835,38 @@ Use auto-sliding window
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/slider.png
 	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The region selection subpanel, which allows you to enable a sliding window
+ mode that automatically makes 2D selections.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -1342,8 +1881,8 @@ By default, a 2x2 window is selected.
 
 \begin_layout Enumerate-Resume
 If you wish to use the full dataset as background, check this option.
- This makes significance checks use the abundance from the entire dataset,
- rather than the selection alone.
+ The statistical analyses will use the transcript abundance from the entire
+ dataset, rather than the selected region alone.
 \end_layout
 
 \begin_layout Enumerate-Resume
@@ -1433,9 +1972,37 @@ Your networks are now synchronized.
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename screenshots/multiple sync and edge table.png
 	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Six different networks all synchronized, with unique edge highlighting enabled.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
