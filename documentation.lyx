@@ -150,7 +150,7 @@ n via synchronized layouts into a single Cytoscape app, with a focus on
 \end_layout
 
 \begin_layout Standard
-InsituNet's networks represent spatial co-expressions between transcript
+InsituNet's networks represent spatial co-expression between transcript
  pairs in an 
 \shape italic
 in situ
@@ -428,7 +428,7 @@ InsituNet takes input in the form of x and y coordinates.
  one each for x and y coordinates.
  The first row is the header row (eg.
  name, x, y) and each row after this header represents a single transcript.
- An example file is seen here:
+ An example part of a file is shown here:
 \end_layout
 
 \begin_layout Standard
@@ -766,7 +766,7 @@ reference "fig:InsituNet's-tissue-view."
 
 \end_inset
 
-) will initially show all all transcripts.
+) will initially show all transcripts.
  Once a network is created and some component(s) in the network are selected,
  the network visualization will be filtered to show only the transcripts
  corresponding to those particular nodes and edges, as described in section
@@ -803,7 +803,7 @@ The view can be panned by left-clicking and dragging, and zoomed at the
  the view and using the scroll wheel.
  You may also left-click individual transcripts to view their name.
  The legend, compass, scale bar, and all other informational components
- may be hidden using the info button: 
+ may be hidden/shown using the info button: 
 \begin_inset Graphics
 	filename screenshots/info.png
 	scale 70
@@ -1423,8 +1423,8 @@ The distance control subpanel expanded.
 \begin_layout Standard
 The search distance value is given in the same units as the input file.
  An estimation of this value in µm is displayed below the search distance.
- This estimation is calculated from the tissue dimensions provided below
- it.
+ This is estimated from the tissue section dimensions provided by the user
+ below it.
  The search distance is used to determine whether any two transcripts are
  close enough to be considered by InsituNet as spatially co-expressed.
  Increasing or decreasing the search distance will result in more or fewer
@@ -1452,7 +1452,7 @@ Edge filtering
 
 \begin_layout Standard
 InsituNet provides several methods to assess the statistical significance
- of spatial co-expressions and to filter the network accordingly.
+ of spatial co-expression and to filter the network accordingly.
  This is to prevent the network becoming excessively dense and to focus
  the analysis on the most significant spatial co-expression relationships.
  The aim is to test whether, given the abundance of a given pair of transcripts,
@@ -1468,12 +1468,13 @@ In situ
  sequencing can provide extremely dense data on the detection of 1 million
  or more transcripts in a given tissue section.
  In such dense data, we would expect to observe a large number of spatial
- co-expressions simply by chance, particularly for highly abundant transcripts.
- InsituNet aims to identify spatial co-expressions between two transcripts
+ co-expression relationships simply by chance, particularly for highly abundant
+ transcripts.
+ InsituNet aims to identify spatial co-expression between two transcripts
  that occur statistically more than expected given the abundance of the
  two transcripts in the data.
  These statistically significant interactions are more likely to represent
- true spatial co-expressions.
+ true spatial co-expression.
  InsituNet can also identify transcripts that are co-expressed much less
  than expected given their abundance.
  These transcripts may represent specific biomarkers of particular cell-types
@@ -1543,23 +1544,24 @@ The simplest filtering option is no filtering.
  The label shuffle and hypergeometric methods are both options to assess
  how statistically surprising each co-expression pair is.
  The label shuffle method performs this by generating a distribution of
- values by simulating 1000 permutions of every transcript's type in place,
- then re-assessing which co-expressions occur.
- The permution only shuffles the transcript types, not their x and y positions.
+ values by randomly permuting transcript labels 1000 times, then re-assessing
+ which co-expressions occur.
+ The permution only shuffles the transcript labels/names, not their x and
+ y positions.
  Significance is then determined by comparing the observed values in the
  real data to this distribution.
  The hypergeometric method is essentially the same process, except a hypergeomet
 ric distribution is automatically created rather than performing the label
  permutation.
  The default is to use to label permutation method, which generally produces
- good results but can occasionally rate lowly-occuring co-expressions extremely
- highly.
+ good results but can occasionally rate lowly abundant transcripts that
+ spatially co-localize extremely highly.
  The hypergeometric test can be less susceptible to this.
  By using the hypergeometric distribution, the significance of drawing 
 \shape italic
 k
 \shape default
- coexpressions of transcripts 
+ co-expressions of transcripts 
 \shape italic
 a
 \shape default
@@ -1571,20 +1573,18 @@ b
  test parameters: 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-•
+\begin_layout Itemize
+
 \shape italic
-N
+N:
 \shape default
  Total spatial co-expressions between all transcripts.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-•
+\begin_layout Itemize
+
 \shape italic
-k
+k:
 \shape default
  Total spatial co-expressions between transcripts 
 \shape italic
@@ -1598,11 +1598,10 @@ b
  
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-•
+\begin_layout Itemize
+
 \shape italic
-n
+n:
 \shape default
  Number of spatial co-expressions involving any 
 \shape italic
@@ -1612,11 +1611,10 @@ a
  
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-•
+\begin_layout Itemize
+
 \shape italic
-K
+K:
 \shape default
  Number of spatial co-expressions involving any 
 \shape italic
@@ -1653,9 +1651,8 @@ reference "fig:The-Cytoscape-Table"
 \end_inset
 
 ).
- The final option available is to use Bonferroni correction, a method for
- fixing the multiple testing issue that arises when making multiple statistical
- asssessments.
+ The final option available is to use Bonferroni correction, a method to
+ correct for multiple testing.
 \end_layout
 
 \begin_layout Standard
@@ -1686,8 +1683,8 @@ name "fig:The-Cytoscape-Table"
 
 \end_inset
 
-The Cytoscape Table Panel, the node and edge tables in which contain information
- about InsituNet's networks.
+The Cytoscape Table Panel, the node and edge tables which contain the raw
+ data used to generate InsituNet's networks.
 \end_layout
 
 \end_inset
